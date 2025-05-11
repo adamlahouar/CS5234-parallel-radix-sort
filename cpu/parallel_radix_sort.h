@@ -7,7 +7,7 @@ public:
     static void sort(int *arr, int n, int numThreads);
 
 private:
-    static void computeLocalHistograms(const int *arr, int n, int **localHistograms, int shift);
+    static void computeLocalHistograms(const int *arr, int n, int *localHistograms, int shift);
 
     static void computeGlobalHistogram(int **localHistograms, int *globalHistogram, int numThreads);
 
@@ -15,7 +15,7 @@ private:
 
     static void computeThreadOffsets(int **localHistograms, const int *prefixSums, int **threadOffsets, int numThreads);
 
-    static void scatterToBuffer(const int *arr, int n, int *buffer, int **threadOffsets, int shift);
+    static void scatterToBuffer(const int *arr, int n, int *buffer, int *threadOffsets, int shift);
 };
 
 

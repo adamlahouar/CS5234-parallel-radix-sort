@@ -11,4 +11,6 @@ int main() {
     constexpr int num_threads = 8;
 
     ParallelRadixSort::sort(data, n, num_threads);
+
+    delete[] data;
 }

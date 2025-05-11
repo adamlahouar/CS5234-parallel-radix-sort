@@ -28,7 +28,7 @@ int main() {
     std::cout << "- Input size:   " << INPUT_SIZE << "\n";
     std::cout << "- Distribution: " << DataGenerator::distToString(DISTRIBUTION) << "\n\n";
 
-    const int *originalData = DataGenerator::generate(INPUT_SIZE, DISTRIBUTION);
+    const auto *originalData = DataGenerator::generate(INPUT_SIZE, DISTRIBUTION);
 
     const auto expectedData = new int[INPUT_SIZE];
     std::memcpy(expectedData, originalData, sizeof(int) * INPUT_SIZE);
@@ -38,5 +38,11 @@ int main() {
     std::memcpy(parallelData, originalData, sizeof(int) * INPUT_SIZE);
     ParallelRadixSort::sort(parallelData, INPUT_SIZE, NUM_THREADS);
 
-    return !isValid(parallelData, expectedData, INPUT_SIZE);
+    const auto result = isValid(parallelData, expectedData, INPUT_SIZE);
+
+    delete[] originalData;
+    delete[] expectedData;
+    delete[] parallelData;
+
+    return !result;
 }
