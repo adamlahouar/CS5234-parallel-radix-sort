@@ -1,16 +1,16 @@
 #include <climits>
-
-#include "data_generator.h"
+#include "serial_radix_sort.h"
 #include "parallel_radix_sort.h"
 
 
 int main() {
-    constexpr int n = INT_MAX;
-    const auto data = DataGenerator::generate(n, DistributionType::NORMAL);
+    constexpr int INPUT_SIZE = INT_MAX;
+    constexpr int NUM_THREADS = 8;
+    const auto inputArray = new int[INPUT_SIZE];
+    const auto outputArray = new int[INPUT_SIZE];
 
-    constexpr int num_threads = 8;
+    ParallelAllOpts::sort(inputArray, outputArray, INPUT_SIZE, NUM_THREADS);
 
-    ParallelRadixSort::sort(data, n, num_threads);
-
-    delete[] data;
+    delete[] inputArray;
+    delete[] outputArray;
 }

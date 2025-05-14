@@ -1,22 +1,25 @@
-#ifndef PARALLEL_RADIX_SORT_H
-#define PARALLEL_RADIX_SORT_H
+#pragma once
 
+namespace BaseParallel {
+    void sort(const int *inputArray, int *outputArray, int n, int numThreads);
+}
 
-class ParallelRadixSort {
-public:
-    static void sort(int *arr, int n, int numThreads);
+namespace ParallelOptA {
+    void sort(int *inputArray, int *outputArray, int n, int numThreads);
+}
 
-private:
-    static void computeLocalHistograms(const int *arr, int n, int *localHistograms, int shift);
+namespace ParallelOptB {
+    void sort(const int *inputArray, int *outputArray, int n, int numThreads);
+}
 
-    static void computeGlobalHistogram(int **localHistograms, int *globalHistogram, int numThreads);
+namespace ParallelOptC {
+    void sort(const int *inputArray, int *outputArray, int n, int numThreads);
+}
 
-    static void computePrefixSums(const int *globalHistogram, int *prefixSums);
+namespace ParallelAllOpts {
+    void sort(int *inputArray, int *outputArray, int n, int numThreads);
+}
 
-    static void computeThreadOffsets(int **localHistograms, const int *prefixSums, int **threadOffsets, int numThreads);
-
-    static void scatterToBuffer(const int *arr, int n, int *buffer, int *threadOffsets, int shift);
-};
-
-
-#endif //PARALLEL_RADIX_SORT_H
+namespace ParallelOptAC {
+    void sort(int *inputArray, int *outputArray, int n, int numThreads);
+}

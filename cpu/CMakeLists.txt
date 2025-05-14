@@ -21,17 +21,18 @@ add_executable(validate_sort
         parallel_radix_sort.h
         data_generator.cpp
         data_generator.h
-
 )
 
 add_executable(for_profiling
         for_profiling.cpp
-        data_generator.h
-        data_generator.cpp
         parallel_radix_sort.cpp
-        parallel_radix_sort.h)
+        parallel_radix_sort.h
+        serial_radix_sort.cpp
+        serial_radix_sort.h)
 
 find_package(OpenMP REQUIRED)
 target_link_libraries(benchmark PRIVATE OpenMP::OpenMP_CXX)
 target_link_libraries(validate_sort PRIVATE OpenMP::OpenMP_CXX)
 target_link_libraries(for_profiling PRIVATE OpenMP::OpenMP_CXX)
+
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -fopenmp -DNDEBUG")

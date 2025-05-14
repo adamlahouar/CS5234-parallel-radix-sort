@@ -3,7 +3,7 @@
 #include <utility>
 #include <cstring>
 
-constexpr int BITS_PER_PASS = 8;
+constexpr int BITS_PER_PASS = 1;
 constexpr int NUM_BUCKETS = 1 << BITS_PER_PASS;
 
 void SerialRadixSort::sort(int *arr, const int n) {
